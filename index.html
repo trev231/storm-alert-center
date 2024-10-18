@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Alert Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* Background color */
+            color: #333; /* Text color */
+            line-height: 1.6;
+            animation: fadeIn 1s; /* Page fade-in animation */
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        header {
+            background: linear-gradient(60deg, #ff6f61, #ffccbc); /* Gradient for header */
+            color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            animation: slideIn 1s ease-in; /* Slide in animation */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            margin: 20px 0;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+            border-radius: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: #ffffff; /* White text for nav links */
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 50px; /* Pill-shaped buttons */
+            transition: background-color 0.3s, color 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav a:hover {
+            background-color: #ffffff; /* White background on hover */
+            color: #ff6f61; /* Coral text on hover */
+        }
+
+        .hero {
+            background-image: url('https://source.unsplash.com/1600x400/?storm'); /* Dynamic image */
+            height: 300px;
+            background-size: cover;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin: 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Overlay */
+        }
+
+        .hero h2 {
+            z-index: 1;
+            font-size: 2.8em;
+            margin: 0;
+            animation: fadeInUp 0.5s; /* Fade-in effect */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s; /* Hover effects */
+            animation: fadeIn 0.5s; /* Fade-in animation */
+        }
+
+        section:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25); /* Deeper shadow on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004d99; /* Footer color */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2 {
+            color: #ff6f61; /* Section title color */
+            border-bottom: 2px solid #ff6f61;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+            margin: 10px 0; /* Margin for lists */
+        }
+
+        li {
+            margin: 10px 0; /* Margin for list items */
+            padding: 10px;
+            background-color: #fce4ec; /* Light pink */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #f48fb1; /* Darker pink on hover */
+        }
+
+        form {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical; /* Vertical resizing allowed */
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #ff6f61; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c84e29; /* Button hover color */
+            transform: scale(1.05); /* Slight scaling on hover */
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column; /* Stack nav links on smaller screens */
+                align-items: center;
+            }
+            nav li {
+                margin: 5px 0; /* Adjust margins */
+            }
+            section {
+                margin: 10px; /* Adjust margins */
+                padding: 15px; /* Adjust padding */
+            }
+        }
+
+        #events {
+            background-color: #e8f5e9; /* Light green background for events section */
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed #4caf50; /* Green border for event section */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Storm Alert Center</h1>
+    <div class="hero">
+        <h2>Stay Safe, Stay Informed!</h2>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#management">Management</a></li>
+        <li><a href="#alerts">Storm Alerts</a></li>
+        <li><a href="#news">News Updates</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#engagement">Community Engagement</a></li>
+        <li><a href="#events">Upcoming Events</a></li>
+    </ul>
+</nav>
+
+<section id="management">
+    <h2>Management Team</h2>
+    <p><strong>Boss:</strong> Andi</p>
+    <p><strong>Co-worker:</strong> CC</p>
+</section>
+
+<section id="alerts">
+    <h2>Storm Alerts</h2>
+    <p><strong>Current Alerts:</strong></p>
+    <ul>
+        <li>Alert 1: Location - Severity - Impact</li>
+        <li>Alert 2: Location - Severity - Impact</li>
+    </ul>
+    <p><strong>Alert Guidelines:</strong></p>
+    <p>[Information on how to interpret alerts]</p>
+</section>
+
+<section id="news">
+    <h2>News Updates</h2>
+    <p><strong>Latest News:</strong></p>
+    <ul>
+        <li><a href="#">Article Title 1</a></li>
+        <li><a href="#">Article Title 2</a></li>
+    </ul>
+    <p><strong>Press Releases:</strong></p>
+    <p>[Link to press releases]</p>
+</section>
+
+<section id="resources">
+    <h2>Resources</h2>
+    <p><strong>Safety Tips:</strong></p>
+    <p>[Guidelines for preparing for storms]</p>
+    <p><strong>Emergency Contacts:</strong></p>
+    <p>[List of emergency services]</p>
+</section>
+
+<section id="engagement">
+    <h2>Community Engagement</h2>
+    <p><strong>Feedback Section:</strong></p>
+    <form id="feedback-form">
+        <label for="feedback">Your Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Enter your feedback here..."></textarea>
+        <input type="submit" value="Submit">
+    </form>
+    <p><strong>Follow us:</strong></p>
+    <p>[Social Media Links]</p>
+</section>
+
+<section id="events">
+    <h2>Upcoming Events</h2>
+    <p><strong>Join us for community storm preparedness workshops!</strong></p>
+    <ul>
+        <li>Workshop 1: Date, Time, Location</li>
+        <li>Workshop 2: Date, Time, Location</li>
+        <li>Annual Storm Preparedness Fair: Date, Location</li>
+    </ul>
+</section>
+
+<footer>
+    <p>&copy; 2023 Storm Alert Center - All Rights Reserved</p>
+</footer>
+
+<script>
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        const feedback = document.getElementById('feedback').value;
+        if (feedback) {
+            alert('Thank you for your feedback!'); // Alert user
+            document.getElementById('feedback').value = ''; // Clear the textarea
+        } else {
+            alert('Please enter your feedback before submitting.'); // Alert if no feedback is entered
+        }
+    });
+</script>
+
+</body>
+</html>
